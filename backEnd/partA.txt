@@ -1,0 +1,223 @@
+CLASS Series
+	CLASS FIELDS:
+		title (String)
+		prodCompany (String)
+		releaseYear (int)
+		episodeList (String[])
+	ACCESSOR: getTitle
+	IMPORT: None
+	EXPORT: title (String)
+	ASSERTION: Returns title
+	ALGORITHM:
+		RETURN COPY OF title
+
+	ACCESSOR: getProdCompany
+        IMPORT: None
+        EXPORT: prodCompany (String)
+        ASSERTION: Returns prodCompany
+        ALGORITHM:
+                RETURN COPY OF prodCompany
+
+	ACCESSOR: getReleaseYear
+        IMPORT: None
+        EXPORT: releaseYear (int)
+        ASSERTION: Returns releaseYear
+        ALGORITHM:
+                RETURN COPY OF releaseYear
+
+	ACCESSOR: getEpisodeList
+        IMPORT: None
+        EXPORT: episodeList (String[])
+        ASSERTION: Returns episodeList
+        ALGORITHM:
+                RETURN COPY OF episodeList
+
+	MUTATOR: setTitle
+	IMPORT: pTitle
+	EXPORT: None
+	ASSERTION: State of title is updated to pTitle value
+	ALGORITHM:
+		title = pTitle
+
+	MUTATOR: setProdCompany
+        IMPORT: pProdCompany
+        EXPORT: None
+        ASSERTION: State of prodCompany is updated to pProdCompany value
+        ALGORITHM:
+                prodCompany = pProdCompany
+
+	MUTATOR: setReleaseYear
+        IMPORT: pReleaseYear
+        EXPORT: None
+        ASSERTION: State of releaseYear is updated to pReleaseYear value
+        ALGORITHM:
+                releaseYear = pReleaseYear
+
+	MUTATOR: setEpisodeList
+        IMPORT: pEpisodeList
+        EXPORT: None
+        ASSERTION: State of episodeList is updated to pEpisodeList value
+        ALGORITHM:
+                episodeList = pEpisodeList
+
+	CONSTRUCTOR WITH PARAMETERS
+	IMPORT: pTitle (String)
+		pProdCompany (String)
+		pReleaseYear (int)
+		pEpisodeList (String[])
+	EXPORT: None.
+	ASSERTION: Created object with imported values
+	ALGORITHM:
+		title = pTitle
+		prodCompany = pProdCompany
+		releaseYear = pReleaseYear
+		episodeList = pEpisodeList
+
+	COPY CONSTRUCTOR
+	IMPORT: pSeries (Series)
+	EXPORT: None.
+	ASSERTION: Created a copy of the imported object.
+	ALGORITHM:
+		title = pSeries.getTitle()
+		prodCompany = pSeries.getProdCompany()
+		releaseYear = pSeries.getReleaseYear()
+		episodeList = pSeries.getEpisodeList()
+
+	CONSTRUCTOR
+	IMPORT: None
+	EXPORT: None
+	ASSERTION: Creates an object with default values
+	ALGORITHM:
+		title = "House M.D."
+		prodCompany = "FOX"
+		releaseYear = 2004
+		Episode episode1 = new Episode("1st ep name", 3000, 1.1)
+                Episode episode2 = new Episode("2nd ep name", 3000, 1.2)
+		
+
+	ACCESSOR: toString
+	IMPORT: None
+	EXPORT: SeriesString (String)
+	ASSERTION: Returns a string representation of the object
+	ALGORITHM:
+		SeriesString = "Title name is " + title + "production company is " + prodCompany + "Release year is " + releaseYear + "episode list are " + episodeList
+
+	ACCESSOR: Equals
+	IMPORT: inObject (Object)
+	EXPORT: isEqual (Boolean)
+	ASSERTION: Returns true if the two objects are equivalent
+	ALGORITHM:
+		isEqual = FALSE
+		IF inObject IS A Series THEN
+			TRANSFORM inObject TO Series NAMED inSeries
+				IF title EQUALS inSeries.getTitle() THEN
+					IF prodCompany EQUALS inSeries.getProdCompany() THEN
+						IF releaseYear EQUALS inSeries.getReleaseYear() THEN
+							IF episodeList EQUALS inSeries.getEpisodeList() THEN
+								isEqual = TRUE
+
+	MAIN:
+	
+
+CLASS Episode
+	CLASS FIELDS:
+		nameOfEp (String)
+		time (int)
+		order (float)
+	
+	ACCESSOR: getnameOfEp
+	IMPORT: None
+	EXPORT: nameOfEp (String)
+	ASSERTION: return nameOfEp
+	ALGORITHM:
+		RETURN COPY OF nameOfEp
+
+	ACCESSOR: getTime
+        IMPORT: None
+        EXPORT: time (int)
+        ASSERTION: return time
+        ALGORITHM:
+                RETURN COPY OF time
+
+	ACCESSOR: getOrder
+        IMPORT: None
+        EXPORT: order (float)
+        ASSERTION: return order
+        ALGORITHM:
+                RETURN COPY OF order
+
+	MUTATOR: setNameOfEp
+	IMPORT: pNameOfEp (String)
+	EXPORT: None
+	ASSERTION: State of nameOfEp is updated to pNameOfEp value
+	ALGORITHM:
+		nameOfEp = pNameOfEp
+	
+	MUTATOR: setTime
+        IMPORT: pTime (int)
+        EXPORT: None
+        ASSERTION: State of time is updated to pTime value
+        ALGORITHM:
+                time = pTime
+	
+	MUTATOR: setOrder
+        IMPORT: pOrder (float)
+        EXPORT: None
+        ASSERTION: State of order is updated to pOrder value
+        ALGORITHM:
+                order = pOrder
+
+	CONSTRUCTORS WITH PARAMETERS
+	IMPORT: pNameOfEp (String)
+		pTime (int)
+		pOrder (float)
+	EXPORT: None
+	ASSERTION: created object with imported values
+	ALGORITHM:
+		nameOfEp = pNameOfEp
+		time = pTime
+		order = pOrder
+
+	COPY CONSTRUCTOR
+	IMPORT: pEpisode (Episode)
+	EXPORT: None.
+	ASSERTION: created a copy of the imported object
+	ALGORITHM: 
+		nameOfEp = pEpisode.getNameOfEp()
+		time = pEpisode.getTime()
+		order = pEpisode.getOrder()
+
+	DEFAULT CONSTRUCTOR
+	IMPORT: NONE
+	EXPORT: NONE
+	ASSERTION: creates an object with the default value
+	ALGORITHM:
+		nameOfEp = "Pilot"
+		time = 2820
+		order = 1.1
+
+	ACCESSOR: toString
+        IMPORT: None
+        EXPORT: EpisodeString (String)
+        ASSERTION: Returns a string representation of the object
+        ALGORITHM:
+                EpisodeString = "Name of episode is " + nameOfEp + "duration of series in seconds is " + time + "order of episodes in series is " + order
+
+	ACCESSOR: Equals
+        IMPORT: inObject (Object)
+        EXPORT: isEqual (Boolean)
+        ASSERTION: Returns true if the two objects are equivalent
+        ALGORITHM:
+                isEqual = FALSE
+                IF inObject IS A EPISODE THEN
+                        TRANSFORM inObject TO Episode NAMED inEpisode
+                                IF nameOfEp EQUALS inEpisode.getNameOfEp() THEN
+                                        IF time EQUALS inEpisode.getTime() THEN
+                                                IF order EQUALS inEpisode.getOrder() THEN
+							isEqual = TRUE
+
+
+
+
+
+
